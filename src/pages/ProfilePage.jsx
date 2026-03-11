@@ -132,4 +132,5 @@ export default function ProfilePage() {
               <button className={styles.saveBtn} onClick={saveName} disabled={saving}>
                 {saving ? <Spinner size={16} color="#000" /> : 'Сохранить'}
               </button>
-              <button​​​​​​​​​​​​​​​​
+               <button className={styles.cancelBtn} onClick={() => { setEditingName(false); setDisplayName(user?.display_name || ''); }}>
+
