@@ -132,5 +132,24 @@ export default function ProfilePage() {
               <button className={styles.saveBtn} onClick={saveName} disabled={saving}>
                 {saving ? <Spinner size={16} color="#000" /> : 'Сохранить'}
               </button>
-               <button className={styles.cancelBtn} onClick={() => { setEditingName(false); setDisplayName(user?.display_name || ''); }}>
+              <button className={styles.cancelBtn} onClick={() => { setEditingName(false); setDisplayName(user?.display_name || ''); }}>
+                ✕
+              </button>
+            </div>
+          ) : (
+            <div className={styles.fieldValue}>{user?.display_name || '—'}</div>
+          )}
+        </div>
 
+        <div className={styles.fieldBlock}>
+          <div className={styles.fieldTop}>
+            <span className={styles.fieldLabel}>Telegram</span>
+          </div>
+          <div className={styles.fieldValue}>
+            {user?.telegram_username ? `@${user.telegram_username}` : '—'}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
