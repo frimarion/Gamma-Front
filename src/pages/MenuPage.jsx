@@ -12,6 +12,7 @@ export default function MenuPage() {
   const [activeCat, setActiveCat] = useState(null);
   const { haptic } = useTelegram();
   const sectionRefs = useRef({});
+  const mainRef = useRef(null);
 
   useEffect(() => {
     api.getMenu().then(data => {
@@ -35,7 +36,8 @@ export default function MenuPage() {
   }
 
   return (
-    <div className={styles.page}>
+    <div className={styles.page} ref={mainRef}>
+      {/* Category tabs */}
       <div className={styles.tabs}>
         {categories.map(cat => (
           <button
@@ -48,6 +50,7 @@ export default function MenuPage() {
         ))}
       </div>
 
+      {/* Menu sections */}
       <div className={styles.sections}>
         {categories.map(cat => (
           <section
@@ -74,7 +77,11 @@ function DishCard({ item, haptic }) {
 
   function handleAdd() {
     haptic?.light();
-    addItem({ menu_item_id: item.id, title: item.title, price: item.price });
+    addItem({
+      menu_item_id: item.id,
+      title: item.title,
+      price: item.price,
+    });
   }
 
   function handleInc() {
@@ -89,6 +96,14 @@ function DishCard({ item, haptic }) {
 
   return (
     <div className={styles.card}>
+      {item.image_url && (
+        <img
+          src={item.image_url}
+          alt={item.title}
+          className={styles.cardImage}
+          loading="lazy"
+        />
+      )}
       <div className={styles.cardBody}>
         <h3 className={styles.itemTitle}>{item.title}</h3>
         {item.description && (
