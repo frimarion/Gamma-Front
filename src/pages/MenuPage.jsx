@@ -96,14 +96,6 @@ function DishCard({ item, haptic }) {
 
   return (
     <div className={styles.card}>
-      {item.image_url && (
-        <img
-          src={item.image_url}
-          alt={item.title}
-          className={styles.cardImage}
-          loading="lazy"
-        />
-      )}
       <div className={styles.cardBody}>
         <h3 className={styles.itemTitle}>{item.title}</h3>
         {item.description && (
